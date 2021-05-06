@@ -25,12 +25,12 @@ a3 db 2
 a4 db 2
 a5 dw 3
 ;------------------------------------------------------------------------------
-interface_1 db "|----Menu from team 4----|",13,10,'$'                ; Меню програми
-interface_2 db "|----Press i to count----|",13,10,'$'
-interface_3 db "|----Press O to sound----|",13,10,'$'
-interface_4 db "|----Press p to leave----|",13,10,'$'
-interface_5 db "|------------------------|",13,10,'$'
-interface_6 db "|----Programm  exited----|",13,10,'$'
+interface_1 db "Menu from team 4",13,10,'$'                ; Меню програми
+interface_2 db "Press i to count",13,10,'$'
+interface_3 db "Press O to sound",13,10,'$'
+interface_4 db "Press p to leave",13,10,'$'
+interface_5 db "----------------",13,10,'$'
+interface_6 db "Programm  exited",13,10,'$'
 ;------------------------------------------------------------------------------
 FREQUENCY EQU 20
 TIME EQU 3500
@@ -156,6 +156,7 @@ beep:
  call sound                  ; Запуск процедури звуку
  jmp ask_cycle               ; Повернення до зчитування
 exit:
+ call draw_interface         ; Для оновлення меню до початкового стану
  mov ah, 09h                 ; Команда для виводу на екран
  mov dx, offset interface_6
  int 21h
